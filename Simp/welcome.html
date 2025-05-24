@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome, My Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+  <style>
+    :root {
+      --btn-bg: #0e0a07;
+      --btn-text: #f7e3cf;
+      --letter-bg: #e7c29d;
+      --letter-text: #3b2f2f;
+      --note-bg: rgba(250, 235, 207, 0.9);
+      --primary: #ff9a76;
+      --secondary: #ff6b6b;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fff5f5 0%, #ffdfd3 100%);
+      color: var(--letter-text);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: -2;
+      opacity: 0.7;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+    }
+
+    .blob:nth-child(1) {
+      width: 600px;
+      height: 600px;
+      top: -150px;
+      left: -200px;
+    }
+
+    .blob:nth-child(2) {
+      width: 500px;
+      height: 500px;
+      bottom: -120px;
+      right: -100px;
+    }
+
+    .blob:nth-child(3) {
+      width: 400px;
+      height: 400px;
+      top: 50%;
+      left: 30%;
+    }
+
+    .blob-animate {
+      animation: float 15s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(40px, 60px); }
+      50% { transform: translate(-60px, -30px); }
+      75% { transform: translate(30px, -40px); }
+    }
+
+    #tsparticles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .welcome-container {
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 24px;
+      padding: 3rem 4rem;
+      max-width: 800px;
+      width: 90%;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(161, 134, 111, 0.2);
+      text-align: center;
+      animation: fadeIn 1.8s ease-out;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .welcome-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(161, 134, 111, 0.3);
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      color: #423938;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+      background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-glow {
+      animation: textGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 5px rgba(255,107,107,0.5); }
+      100% { text-shadow: 0 0 15px rgba(255,107,107,0.8); }
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #5a3e36;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      background-color: var(--btn-bg);
+      color: var(--btn-text);
+      border: none;
+      padding: 14px 36px;
+      font-size: 1rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 6px 15px rgba(161, 134, 111, 0.3);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 4rem;
+      justify-content: center;
+    }
+
+    .image-box {
+      width: 200px;
+      height: 275px;
+      perspective: 700px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .image, .image-notes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .image {
+      filter: brightness(0.95);
+      z-index: 1;
+    }
+
+    .image-notes {
+      background-color: var(--note-bg);
+      color: #3b2f2f;
+      padding: 20px;
+      font-size: 0.95rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transform: rotateX(90deg);
+      opacity: 0;
+      transform-origin: top center;
+      z-index: 2;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .image-box:hover .image {
+      filter: blur(2px) brightness(0.8);
+      transform: scale(0.95);
+    }
+
+    .image-box:hover .image-notes {
+      transform: rotateX(0);
+      opacity: 1;
+    }
+
+    .image-notes a {
+      margin-top: 10px;
+      color: #7c4d26;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+      padding: 5px 10px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .image-notes a:hover {
+      text-decoration: none;
+      background: rgba(255,255,255,0.5);
+      transform: translateX(5px);
+    }
+
+    .floating-heart {
+      position: absolute;
+      color: #ff6b6b;
+      font-size: 20px;
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    .heart-animate {
+      animation: floatHeart 10s linear forwards;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-500px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #gif-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9) url('https://media.tenor.com/XqDfKzUJTWQAAAAM/cute.gif') no-repeat center center;
+      background-size: contain;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeInOverlay 0.5s ease-out;
+    }
+
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .welcome-container {
+        padding: 2rem;
+      }
+      
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .image-box {
+        width: 200px;
+        height: 225px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="tsparticles"></div>
+  
+  <div class="blob"></div>
+  <div class="blob"></div>
+  <div class="blob"></div>
+
+  <div class="welcome-container">
+    <h1 id="main-heading">You can rest now, My Love ^^</h1>
+    <p><i>This is only for my baby riri!</i></p>
+    
+    <div class="image-container">
+      <div class="image-box">
+        <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t1.15752-9/491356062_560252397111899_6933225597614619845_n.png?_nc_cat=103&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFliFruZnkbRD8KHjMexDCFRSh49Bj7oEJFKHj0GPugQt0HkPXROxsxv99Szb22Xb7t_rxvAnXYTR2gpjjg7qvQ&_nc_ohc=R2ANeaN2w00Q7kNvwHrDQAt&_nc_oc=AdmOiJrAnL9g3xd8CENvUZdP3RLfKqEJORT-C5K5ur5Qn1zdX06gsAIj83W_xo7m4JA&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&oh=03_Q7cD2AH5jWTsW1tsl-tD1lU-qRhwvqytnUsCihvCLQi4umIUCA&oe=6830DBA0" alt="Music 1" class="image">
+        <div class="image-notes">
+          <p>This song always reminds me of the moment you asked me to request it. It was so cute I kept listening to it ever since.</p>
+          <a href="https://www.youtube.com/watch?v=pSAtptOY7dI" target="_blank">Click Here!</a>
+        </div>
+      </div>
+      <div class="image-box">
+        <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t1.15752-9/490898579_1205316017657462_455385307738458670_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeHwOh3st0eGfYTB6uDUzbeI3K0ucuznzijcrS5y7OfOKJRWYZl70pIaImX9aMOe3fZjar-BFCn40_dE3RTfSUiT&_nc_ohc=GFl4KJTUiUsQ7kNvwFGPln7&_nc_oc=AdnDIS7SBL73znfnp6hZphsjPXO6ufAxXv3eP0rBy5xL8ZOsFMBpqb9ue8-N_hvfT90&_nc_zt=23&_nc_ht=scontent.fmnl17-3.fna&oh=03_Q7cD2AFIhVQIF08FUSq-lNoOpsPaaSGxsvYWvMcF-2nXdb7yEA&oe=68310978" alt="Music 2" class="image">
+        <div class="image-notes">
+          <p>Seeing you for the first time was the most magical moment that happened to me.</p>
+          <a href="https://www.youtube.com/watch?v=9tLglpFAyIg" target="_blank">Here Po!</a>
+        </div>
+      </div>
+      <div class="image-box">
+        <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t1.15752-9/491202751_3594325497377869_3502557044425347133_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeHs-xKUAmira3YYy7OYFGes_5oz6Bqnj3L_mjPoGqePcgBXwPa0hAblxwdvHB4oLKk1puKDV_MRGIrOU4aYaqjn&_nc_ohc=LJY4QEYtfRIQ7kNvwFe6WwE&_nc_oc=AdniUdzbJixhfJ7qz3oEgMjBMsAtHi1ZzDMjiFYnCaTCHQ1bikTNlo05SHJ_zDtwV_I&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&oh=03_Q7cD2AGoFnY9ZQPbdKP2UJO9Rl21GShqPF5paZECVx2rZmHvZA&oe=683105D1" alt="Music 3" class="image">
+        <div class="image-notes">
+          <p>Do I need to explain? Every time, in any situation, good or bad — you're my Palagi.</p>
+          <a href="https://www.youtube.com/watch?v=fu9yk7gCTbc" target="_blank">Here hihi!</a>
+        </div>
+      </div>
+    </div>
+    
+    <button id="enter-btn" class="btn">Enter Your Home</button>
+  </div>
+
+  <div id="gif-overlay"></div>
+
+  <script>
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: ["#ff9a76", "#ff6b6b", "#ff8e53"]
+        },
+        shape: {
+          type: "circle",
+          stroke: {
+            width: 0,
+            color: "#000000"
+          }
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 2,
+            size_min: 0.3
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ff9a76",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: {
+            enable: true,
+            rotateX: 600,
+            rotateY: 1200
+          }
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "grab"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 140,
+            line_linked: {
+              opacity: 1
+            }
+          },
+          push: {
+            particles_nb: 4
+          }
+        }
+      },
+      retina_detect: true
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const welcomeContainer = document.querySelector('.welcome-container');
+      const blobs = document.querySelectorAll('.blob');
+      const heading = document.getElementById('main-heading');
+      let heartInterval;
+
+      welcomeContainer.addEventListener('mouseenter', function() {
+        blobs.forEach(blob => {
+          blob.classList.add('blob-animate');
+        });
+
+        heading.classList.add('text-glow');
+        heartInterval = setInterval(createHeart, 500);
+      });
+
+      welcomeContainer.addEventListener('mouseleave', function() {
+        blobs.forEach(blob => {
+          blob.classList.remove('blob-animate');
+        });
+
+        heading.classList.remove('text-glow');
+        clearInterval(heartInterval);
+      });
+
+      function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart heart-animate';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 10 + 5) + 's';
+        document.body.appendChild(heart);
+        
+        setTimeout(() => {
+          heart.remove();
+        }, 15000);
+      }
+    });
+
+    document.getElementById('enter-btn').addEventListener('click', function() {
+      document.getElementById('gif-overlay').style.display = 'flex';
+      setTimeout(function() {
+        window.location.href = 'main.html';
+      }, 5000);
+    });
+  </script>
+</body>
+</html>

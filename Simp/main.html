@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Baby Riri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --brown: #6a4e23; /* Modern brown */
+  --light-brown: #b8a66d; /* Lighter brown */
+  --dark-brown: #3e2a47; /* Dark brown */
+  --white: #fff;
+  --soft-white: #f7e5d2; /* Soft light brown */
+}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--soft-white);
+      color: #333;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+ 
+    }
+  
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      color: var(--brown);
+      margin-bottom: 2rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .messages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .message-card {
+      background-color: var(--white);
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid var(--light-brown);
+      position: relative;
+      overflow: hidden;
+      height: 350px; /* Set fixed height */
+    }
+
+    .message-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  display: none; /* hidden by default */
+  transition: all 0.3s ease;
+}
+
+.message-card:focus-within img,
+.message-card:hover img,
+.message-card.show img {
+  display: block;
+}
+
+.message-card p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 1rem 0 0;
+  z-index: 1;
+  position: relative;
+  filter: none; /* REMOVE the blur */
+  transition: filter 0.3s ease;
+}
+
+
+.message-card img:hover + p {
+  filter: blur(0); /* Unblur when image is hovered */
+}
+
+
+    .message-card:hover img {
+      transform: scale(1.05); /* Slight zoom effect */
+    }
+
+    
+    .message-card::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.1);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 2;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .message-card:hover::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.25);
+    }
+
+    /* Set background images for hover */
+    .message-card:nth-child(1)::after {
+      background-image: url('https://scontent.fmnl17-8.fna.fbcdn.net/v/t1.15752-9/490983485_1243717217144815_5056563247326692108_n.jpg');
+    }
+
+    .message-card:nth-child(2)::after {
+      background-image: url('https://scontent.fmnl17-5.fna.fbcdn.net/v/t1.15752-9/485591372_1368981334241098_2768106895463113218_n.jpg');
+    }
+
+    .message-card:nth-child(3)::after {
+      background-image: url('https://scontent.fmnl17-6.fna.fbcdn.net/v/t1.15752-9/490914287_1072704298029220_5998962622429649513_n.jpg');
+    }
+
+    .message-card:nth-child(4)::after {
+      background-image: url('https://scontent.fmnl17-2.fna.fbcdn.net/v/t1.15752-9/490983496_656033703875602_31181456351901616_n.jpg');
+    }
+
+    .message-card:nth-child(5)::after {
+      background-image: url('https://scontent.fmnl17-8.fna.fbcdn.net/v/t1.15752-9/490980832_9660523104068050_2655172884762414545_n.jpg');
+    }
+
+    .message-card:nth-child(6)::after {
+      background-image: url('https://scontent.fmnl17-6.fna.fbcdn.net/v/t1.15752-9/490914287_1072704298029220_5998962622429649513_n.jpg');
+    }
+
+    .message-card:nth-child(7)::after {
+      background-image: url('https://scontent.fmnl17-8.fna.fbcdn.net/v/t1.15752-9/490983485_1243717217144815_5056563247326692108_n.jpg');
+    }
+
+    .message-card:nth-child(8)::after {
+      background-image: url('https://scontent.fmnl17-8.fna.fbcdn.net/v/t1.15752-9/490980832_9660523104068050_2655172884762414545_n.jpg');
+    }
+
+    .hug-btn, .logout-btn, .help-btn {
+      background-color: var(--brown);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      cursor: pointer;
+      margin: 1rem 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(243, 104, 224, 0.3);
+    }
+
+    .hug-btn:hover, .logout-btn:hover, .help-btn:hover {
+      background-color: var(--dark-brown);
+      transform: scale(1.05);
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: var(--pink);
+      transform: rotate(45deg);
+      opacity: 0.6;
+      animation: float 5s infinite ease-in-out;
+    }
+
+    .heart:before,
+    .heart:after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background-color: var(--pink);
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart:before { top: -10px; left: 0; }
+    .heart:after { top: 0; left: -10px; }
+
+    @keyframes float {
+      0% { transform: rotate(45deg) translateY(0) scale(1); opacity: 0.6; }
+      50% { transform: rotate(45deg) translateY(-20px) scale(1.1); opacity: 0.9; }
+      100% { transform: rotate(45deg) translateY(0) scale(1); opacity: 0.6; }
+    }
+
+    .heart:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+    .heart:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
+    .heart:nth-child(3) { top: 30%; left: 50%; animation-delay: 2s; }
+    .heart:nth-child(4) { top: 80%; left: 10%; animation-delay: 3s; }
+    .heart:nth-child(5) { top: 20%; left: 70%; animation-delay: 4s; }
+
+    .hug-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 240, 245, 0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease;
+      z-index: 10;
+    }
+
+    .hug-popup.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hug-popup img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      animation: hugScale 0.8s ease;
+    }
+
+    @keyframes hugScale {
+      0% { transform: scale(0.3); opacity: 0; }
+      60% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    .close-hug-btn {
+      margin-top: 2rem;
+      background-color: var(--dark-pink);
+      color: rgb(141, 84, 37);
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(243, 104, 224, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .close-hug-btn:hover {
+      background-color: var(--dark-brown);
+    }
+ 
+ </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="hearts">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+    </div>
+
+    <h1>For My Precious Riri</h1>
+
+    <div class="messages">
+      <div class="message-card">
+        <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t1.15752-9/490980832_9660523104068050_2655172884762414545_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGgbonVWHtv_VH1qeZ_iZV_WQpuVzPoZexZCm5XM-hl7E4Yp2CqjNvhl_P0_KS9OkpJTt2GYJ0l_Ml-HjGQ-Z5r&_nc_ohc=YmFhC5IiuN0Q7kNvwErtX-y&_nc_oc=Adlo0xp2FZ2Y0fO1E3V3fuhjrYWpibPfVYsXBsplgAqbXsAuUR3E-AtF3fWY6lfiqLI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&oh=03_Q7cD2AEiRjwY7WSb4IpamzjGZxK3zbX59nhsCS76waoQj_MVog&oe=68338A73" alt="Message 1" />
+        <p>I love you so much, Riri. You are my Palagi!</p>
+      </div>
+      <div class="message-card">
+        <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t1.15752-9/490983496_656033703875602_31181456351901616_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGhcqvE6YvZ90dE829ItL1wCo4JxjV9cF4KjgnGNX1wXlwdKe6rKteYd5MmICA41Bt7Sj_33H3Vno7_UdxXMZ6Z&_nc_ohc=cEGwp7FQ10IQ7kNvwG7rGdo&_nc_oc=Adk9XFFlA8__EKU5SSQUBdNNRZfDjDwziJLwmWnEilFGVyXWw7t3F4JnizCnSCwUw3Q&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-2.fna&oh=03_Q7cD2AGex9rHpvF4EqGQZpf7XzeKZS7dVyJrrkTkg2JoR0O4tA&oe=68337CF1" alt="Message 2" />
+        <p> You did great today, mahal. Proud ako palagi sayo!</p>
+      </div>
+      <div class="message-card">
+        <img src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t1.15752-9/485591372_1368981334241098_2768106895463113218_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFY-K99B0E4pam-PzoNtPsZJ9WI8fdAE3An1Yjx90ATcCjwo2Xce5xKdBwvy-OxNEafgHYtA4rKCi4YUJ1X4RxX&_nc_ohc=4atCEqHr-fsQ7kNvwFJWvPw&_nc_oc=Adn9y3AWDqvReOfpVKgO2YzTvYU30hn2NVYf37fX96XDcgPvy1v8LKMUa_qesVyeMR8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&oh=03_Q7cD2AFEIzLQj5ng7I1oXHwuGKUsh2qlHbRVjiiLCmFgV6tp1g&oe=683379AE" alt="Message 3" />
+        <p>Thank you for existing and being my pahinga palagi!</p>
+      </div>
+      <div class="message-card">
+        <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t1.15752-9/490983485_1243717217144815_5056563247326692108_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGtuvmg_-uXNliaQK1GRpXdpY8BSKnqKLyljwFIqeoovLY_cPhHfyLksyMCfdieuHtkWADjE5tPnX9keCrO2FPt&_nc_ohc=KdrvgcorcukQ7kNvwGMsXNX&_nc_oc=AdmTcT9sbQ6ieI5HkoXiXq-fpFWbN_kzhU-hmpWXFauTaITJQbrH-7-xAUjE623ZFGM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&oh=03_Q7cD2AGNcyQHwcjSCKHb030sE3Li-dUFdUakTztjNMHbvv1HIg&oe=68339C15" alt="Message 4" />
+        <p>You are the most beautiful, mahal.</p>
+      </div>
+      <div class="message-card">
+        <img src="https://scontent.fmnl17-6.fna.fbcdn.net/v/t1.15752-9/490914287_1072704298029220_5998962622429649513_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeHvA_9uS23hJXs945BbTkUB-e-h4s6AT9_576HizoBP377BkWKeXea2N3Ns9UlCDhPpFvJmYMPEPK6wVr7IRTZT&_nc_ohc=HxNUCauNq8gQ7kNvwFJ2ZkM&_nc_oc=AdkXXDub4mO1kE210uQutO6czfleyAd6wpA0MCnFLW1YdZf0_u2iNdl-DB3-SUM3SoA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-6.fna&oh=03_Q7cD2AFxCZsnox0CX-dOMB1Ht0uOC5EnsLnQiW4CgLsQuOYYfg&oe=683371B5" alt="Message 5" />
+        <p> Everytime, anywhere and kahit anong sitwasyon, remember na baby kita.</p>
+      </div>
+      <div class="message-card">
+        <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t1.15752-9/490980832_9660523104068050_2655172884762414545_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGgbonVWHtv_VH1qeZ_iZV_WQpuVzPoZexZCm5XM-hl7E4Yp2CqjNvhl_P0_KS9OkpJTt2GYJ0l_Ml-HjGQ-Z5r&_nc_ohc=YmFhC5IiuN0Q7kNvwErtX-y&_nc_oc=Adlo0xp2FZ2Y0fO1E3V3fuhjrYWpibPfVYsXBsplgAqbXsAuUR3E-AtF3fWY6lfiqLI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&oh=03_Q7cD2AEiRjwY7WSb4IpamzjGZxK3zbX59nhsCS76waoQj_MVog&oe=68338A73" alt="Message 6" />
+        <p>Thank you for that beautiful smile and cute laughssss!</p>
+      </div>
+      <div class="message-card">
+        <img src="https://scontent.fmnl17-5.fna.fbcdn.net/v/t1.15752-9/485591372_1368981334241098_2768106895463113218_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeFY-K99B0E4pam-PzoNtPsZJ9WI8fdAE3An1Yjx90ATcCjwo2Xce5xKdBwvy-OxNEafgHYtA4rKCi4YUJ1X4RxX&_nc_ohc=4atCEqHr-fsQ7kNvwFJWvPw&_nc_oc=Adn9y3AWDqvReOfpVKgO2YzTvYU30hn2NVYf37fX96XDcgPvy1v8LKMUa_qesVyeMR8&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-5.fna&oh=03_Q7cD2AFEIzLQj5ng7I1oXHwuGKUsh2qlHbRVjiiLCmFgV6tp1g&oe=683379AE" alt="Message 7" />
+        <p> Umuusad ka and humahanga ako sayo.</p>
+      </div>
+      <div class="message-card">
+        <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t1.15752-9/490983485_1243717217144815_5056563247326692108_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGtuvmg_-uXNliaQK1GRpXdpY8BSKnqKLyljwFIqeoovLY_cPhHfyLksyMCfdieuHtkWADjE5tPnX9keCrO2FPt&_nc_ohc=KdrvgcorcukQ7kNvwGMsXNX&_nc_oc=AdmTcT9sbQ6ieI5HkoXiXq-fpFWbN_kzhU-hmpWXFauTaITJQbrH-7-xAUjE623ZFGM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&oh=03_Q7cD2AGNcyQHwcjSCKHb030sE3Li-dUFdUakTztjNMHbvv1HIg&oe=68339C15" alt="Message 8" />
+        <p> I always pray for you, mahal.</p>
+      </div>
+    </div>
+
+    <button class="hug-btn">Send Hug</button>
+    <button class="logout-btn">Logout</button>
+    <button class="help-btn">Need Help?</button>
+
+  </div>
+
+  </div>
+  
+<script>
+  document.querySelectorAll('.message-card').forEach(card => {
+    card.setAttribute('tabindex', '0'); // Make focusable
+
+    card.addEventListener('click', () => {
+      card.classList.toggle('show'); // Toggle image on click
+    });
+  });
+</script>
+<div class="hug-popup" id="hugPopup">
+  <img src="https://i.pinimg.com/originals/26/65/ee/2665eedf2100e60848d7302e8a7ee7d6.gif" alt="Sending Hug to Riri ❤️" />
+  <button class="close-hug-btn" id="closeHugBtn">Close Hug</button>
+</div>
+<script>
+  // Toggle message card images
+  document.querySelectorAll('.message-card').forEach(card => {
+    card.setAttribute('tabindex', '0'); // Make focusable
+    card.addEventListener('click', () => {
+      card.classList.toggle('show');
+    });
+  });
+
+  // Hug popup functionality
+  const hugBtn = document.querySelector('.hug-btn');
+  const closeHugBtn = document.getElementById('closeHugBtn');
+  const hugPopup = document.getElementById('hugPopup');
+
+  hugBtn.addEventListener('click', () => {
+    hugPopup.classList.add('show');
+  });
+
+  closeHugBtn.addEventListener('click', () => {
+    hugPopup.classList.remove('show');
+  });
+
+   // Logout button functionality
+   const logoutBtn = document.querySelector('.logout-btn');
+    
+    logoutBtn.addEventListener('click', () => {
+      window.location.href = 'index.html';  // Redirects to index.html when logout button is clicked
+      
+   });
+
+   const helpBtn = document.querySelector('.help-btn');
+   helpBtn.addEventListener('click', () => {
+     // Change this URL to the actual help page URL
+     window.location.href = 'cart.html';
+   });
+</script>
+
+</body>
+</html>

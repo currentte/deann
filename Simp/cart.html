@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Are You Feeling, My Love?</title>
+  <link rel="stylesheet" href="cart.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    .logout-container {
+      text-align: right;
+      margin: 10px 20px;
+    }
+
+    .logout-btn {
+      background-color: #df31df;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .logout-btn:hover {
+      background-color: #d873f7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <div class="logout-container">
+      <button class="logout-btn" id="logoutBtn">Logout</button>
+    </div>
+
+    <div class="header">
+      <h1>How are you feeling today?</h1>
+      <p>Ano po feelings/emotions ng baby ko?</p>
+    </div>
+    
+    <div class="categories">
+      <button class="category-btn active" data-category="emotions">
+        <i class="fas fa-heart"></i> Emotions
+      </button>
+      <button class="category-btn" data-category="problems">
+        <i class="fas fa-exclamation-triangle"></i> Problems
+      </button>
+      <button class="category-btn" data-category="struggles">
+        <i class="fas fa-hands-helping"></i> Struggles
+      </button>
+    </div>
+    
+    <div class="options-container">
+      <div class="options emotions active">
+        <button class="option-btn" data-response="sad">
+          <i class="fas fa-sad-tear"></i> Sad
+        </button>
+        <button class="option-btn" data-response="anxious">
+          <i class="fas fa-flushed"></i> Anxious
+        </button>
+        <button class="option-btn" data-response="angry">
+          <i class="fas fa-angry"></i> Angry
+        </button>
+        <button class="option-btn" data-response="lonely">
+          <i class="fas fa-user-times"></i> Lonely
+        </button>
+        <button class="option-btn" data-response="overwhelmed">
+          <i class="fas fa-tired"></i> Overwhelmed
+        </button>
+        <button class="option-btn" data-response="happy">
+          <i class="fas fa-laugh-beam"></i> Happy
+        </button>
+      </div>
+      
+      <div class="options problems">
+        <button class="option-btn" data-response="school">
+          <i class="fas fa-briefcase"></i> School Stress
+        </button>
+        <button class="option-btn" data-response="relationships">
+          <i class="fas fa-heartbeat"></i> Relationships
+        </button>
+        <button class="option-btn" data-response="health">
+          <i class="fas fa-heartbeat"></i> Health Issues
+        </button>
+        <button class="option-btn" data-response="financial">
+          <i class="fas fa-money-bill-wave"></i> Financial Worries
+        </button>
+        <button class="option-btn" data-response="future">
+          <i class="fas fa-question-circle"></i> Future Uncertainty
+        </button>
+        <button class="option-btn" data-response="Confidence">
+          <i class="fas fa-user-shield"></i> Confidence
+        </button>
+      </div>
+      
+      <div class="options struggles">
+        <button class="option-btn" data-response="motivation">
+          <i class="fas fa-fire"></i> Lack of Motivation
+        </button>
+        <button class="option-btn" data-response="procrastination">
+          <i class="fas fa-clock"></i> Procrastination
+        </button>
+        <button class="option-btn" data-response="comparison">
+          <i class="fas fa-balance-scale"></i> Comparison
+        </button>
+        <button class="option-btn" data-response="perfectionism">
+          <i class="fas fa-star"></i> Perfectionism
+        </button>
+        <button class="option-btn" data-response="boundaries">
+          <i class="fas fa-shield-alt"></i> Setting Boundaries
+        </button>
+        <button class="option-btn" data-response="change">
+          <i class="fas fa-exchange-alt"></i> Fear of Change
+        </button>
+      </div>
+    </div>
+   
+    <div class="response-container">
+      <div class="response-card">
+        <div class="response-content">
+          <h2>I'm always here for you</h2>
+          <p>Select an option above to get lj's assurance.</p>
+          <p>Click more help if you need assurance on real time.</p>
+        </div>
+        <div class="response-footer">
+          <a href="https://www.facebook.com/Leb26" class="action-btn" target="_blank">
+            <i class="fab fa-facebook"></i> More Help
+          </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="cart.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const logoutBtn = document.getElementById('logoutBtn');
+      logoutBtn.addEventListener('click', () => {
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>

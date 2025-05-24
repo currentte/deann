@@ -1,0 +1,150 @@
+:root {
+  --primary: #1f1c20;
+  --primary-dark: #1f1c20;
+  --accent: #e0bbe4;
+  --light: #1f1c20
+  --gray: #1f1c20;
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: url('https://scontent.fmnl17-4.fna.fbcdn.net/v/t1.15752-9/491011014_4050924868473189_7476382417383570796_n.png?_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeHTRYHWJOD0atn5pilsFFkT0gstV9QjLNbSCy1X1CMs1g5yuQpxi7yZp4GQvchGk3awvgsvtwUr3i5yS7fJQvQi&_nc_ohc=Q3DT6Tlu33IQ7kNvwG32_dP&_nc_oc=Adk_jKB3PX_UaojRwSFnMP_5avXZqey1UxeJJk8kJvieAhYnlGyxKmLJkdQlRr2XVvA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fmnl17-4.fna&oh=03_Q7cD2QF2JIUlF3eyo_9WNBXtMErUv45YB5OjaLX9DYv8MBZQfQ&oe=6857D58C') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.chibi-wrapper {
+  display: none; /* Hide the image but keep HTML intact */
+}
+
+.chibi {
+  width: 150px;
+  max-width: 50vw;
+  opacity: 0.9;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+}
+
+
+
+.login-box {
+  backdrop-filter: blur(16px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo svg {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+  border: none;
+  border-bottom: 1px solid var(--gray);
+  outline: none;
+  background: transparent;
+  color: var(--dark);
+}
+
+.input-group label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  font-size: 16px;
+  color: var(--gray);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+  top: -20px;
+  font-size: 12px;
+  color: var(--primary);
+}
+
+.underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.input-group input:focus ~ .underline,
+.input-group input:valid ~ .underline {
+  width: 100%;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
